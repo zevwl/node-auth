@@ -1,6 +1,9 @@
+// Load environment variables
+require('dotenv').config();
+
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');    // used to create, sign and verify tokens
-const secret = process.env.SECRET;
+const secret = process.env.secret;
 
 module.exports = {
     main,
@@ -38,10 +41,7 @@ function setup(req, res) {
 
 // Return all users (GET http://localhost:8080/api/users)
 function showUsers(req, res) {
-
-    User.find({}, (err, users) => {
-        res.json(users);
-    });
+    User.find({}, (err, users) => res.json(users));
 }
 
 function authenticate(req, res) {
